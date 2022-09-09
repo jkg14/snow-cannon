@@ -1,7 +1,7 @@
 ACCOUNT=$(eval aws sts get-caller-identity)
 AWS_ACCOUNT_ID=$(echo $ACCOUNT | jq -r .Account)
 
-TOKEN=$(eval aws sts assume-role --role-arn "arn:aws:iam::$AWS_ACCOUNT_ID:role/snow-cannon-ci-deployment-role-dev" --role-session-name AWSCLI-Session --duration-seconds 900)
+TOKEN=$(eval aws sts assume-role --role-arn "arn:aws:iam::$AWS_ACCOUNT_ID:role/glasgow-cannon-1-ci-deployment-role-dev" --role-session-name AWSCLI-Session --duration-seconds 900)
 
 ACCESS_KEY=$(echo $TOKEN | jq -r .Credentials.AccessKeyId)
 SECRET_KEY=$(echo $TOKEN | jq -r .Credentials.SecretAccessKey)

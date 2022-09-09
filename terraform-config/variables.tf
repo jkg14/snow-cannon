@@ -7,6 +7,6 @@ variable "workspace_name" {
 
 variable "project_name" {
   type        = string
-  default     = "snow-cannon"
+  default     = "glasgow-cannon-1"
   description = "The project to which the resource belongs"
 }

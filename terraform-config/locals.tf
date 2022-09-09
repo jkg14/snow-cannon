@@ -7,7 +7,7 @@ locals {
 }
 
 locals {
-  project_name = "snow-cannon"
+  project_name = "glasgow-cannon-1"
 }
 
 locals {
