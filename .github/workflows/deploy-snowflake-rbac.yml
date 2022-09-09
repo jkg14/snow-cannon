@@ -13,11 +13,17 @@ on:
 
 
 jobs:
+  build-container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Builds Docker image
+        run: docker build . -f ./docker/Dockerfile -t snowflake_terraform_image_GhT53
+
   deploy-snowflake-rbac:
     runs-on: ubuntu-latest
-    using: 'docker'
-    image: './.docker/Dockerfile'
     environment: dev
+    container: snowflake_terraform_image_GhT53
     env:
       ENV: dev
       SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
