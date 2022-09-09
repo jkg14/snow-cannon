@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     profile = "aws-dev"
-    bucket  = "snow-cannon-remote-state"
+    bucket  = "glasgow-cannon-remote-state"
     key     = "aws/state-resources/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
