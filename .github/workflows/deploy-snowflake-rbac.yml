@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'snowflake/infra/rbac/**'
+  workflow_dispatch:
+    
 
 jobs:
   deploy-snowflake-rbac:
