@@ -40,9 +40,9 @@ Making use of Snowflake's default and recommended roles, this project creates th
 ## Dependencies
 In order to contribute or run this project, you will need:
 
-- [terraform v0.13](https://www.terraform.io/)
-- [terraform-provider-snowflake v0.17.1](https://github.com/chanzuckerberg/terraform-provider-snowflake)
-- [Python v3.7](https://www.python.org/downloads/release/python-381/)
+- [terraform v1.28](https://www.terraform.io/)
+- [terraform-provider-snowflake v0.43.0](https://github.com/Snowflake-Labs/terraform-provider-snowflake)
+- [Python v3.8.1](https://www.python.org/downloads/release/python-381/)
 - [SnowSQL v1.2](https://docs.snowflake.com/en/user-guide/snowsql.html)
 - [AWS Command Line Interface v2.0.46](https://aws.amazon.com/cli/)
 - [pre-commit](https://pre-commit.com/)
@@ -162,7 +162,7 @@ Each environment's config can be added to `terraform-config/providers.tf` and th
           }
         }
         providers = {
-          snowflake_version = "0.17.1"
+          snowflake_version = "0.43.0"
           aws_version       = "~> 3.5.0"
         }
       }
