@@ -18,9 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Builds Docker image
-        run: docker build . -f ./docker/Dockerfile -t snowflake_terraform_image_ght4353
+        run: docker build . -f .docker/Dockerfile -t snowflake_terraform_image_ght4353
 
   deploy-snowflake-rbac:
+    depends-on: build-container
     runs-on: ubuntu-latest
     environment: dev
     container: snowflake_terraform_image_ght4353
