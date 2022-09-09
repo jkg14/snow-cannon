@@ -21,7 +21,7 @@ jobs:
         run: docker build . -f .docker/Dockerfile -t snowflake_terraform_image_ght4353
 
   deploy-snowflake-rbac:
-    depends-on: build-container
+    needs: build-container
     runs-on: ubuntu-latest
     environment: dev
     container: snowflake_terraform_image_ght4353
