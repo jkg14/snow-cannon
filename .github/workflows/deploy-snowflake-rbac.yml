@@ -5,7 +5,7 @@ on:
     paths:
       - 'snowflake/infra/rbac/**'
   workflow_dispatch:
-    
+
 
 jobs:
   deploy-snowflake-rbac:
