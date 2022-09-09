@@ -6,7 +6,7 @@ terraform {
     bucket         = "snow-cannon-remote-state"
     dynamodb_table = "snow-cannon-lock-table"
     key            = "snowflake/infra/storage-integrations/terraform.tfstate"
-    region         = "eu-west-2"
+    region         = "us-east-1"
     encrypt        = true
   }
 

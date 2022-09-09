@@ -5,7 +5,7 @@ terraform {
     profile = "aws-dev"
     bucket  = "snow-cannon-remote-state"
     key     = "aws/state-resources/terraform.tfstate"
-    region  = "eu-west-2"
+    region  = "us-east-1"
     encrypt = true
   }
 

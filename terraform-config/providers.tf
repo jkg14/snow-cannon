@@ -6,7 +6,7 @@ locals {
 
       aws_account = {
         id      = "455073406672"
-        region  = "eu-west-2"
+        region  = "us-east-1"
         profile = "aws-dev"
       }
 

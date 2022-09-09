@@ -138,7 +138,7 @@ Each environment's config can be added to `terraform-config/providers.tf` and th
           aws_account = {
             profile = "aws-dev"
             id      = "xxxxxxxxxxxx"
-            region  = "eu-west-2"
+            region  = "us-east-1"
           }
 
           snowflake_account = {
@@ -153,7 +153,7 @@ Each environment's config can be added to `terraform-config/providers.tf` and th
           aws_account = {
             profile = "aws-staging"
             id      = "yyyyyyyyyyyy"
-            region  = "eu-west-2"
+            region  = "us-east-1"
           }
 
           snowflake_account = {
