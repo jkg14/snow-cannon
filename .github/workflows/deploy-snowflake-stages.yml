@@ -8,7 +8,8 @@ on:
 jobs:
   deploy-snowflake-stages:
     runs-on: ubuntu-latest
-    container: infinityworks/awscli-terraform-snowflake:1.0.0
+    container: glasgowcannoners/new-tf-snow:latest
+    environment: dev
     env:
       ENV: dev
       SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
