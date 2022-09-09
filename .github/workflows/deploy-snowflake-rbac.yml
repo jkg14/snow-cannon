@@ -5,6 +5,11 @@ on:
     paths:
       - 'snowflake/infra/rbac/**'
   workflow_dispatch:
+    inputs:
+        manual_run:
+          description: Manual Run
+          default: 1
+          required: false
 
 
 jobs:
