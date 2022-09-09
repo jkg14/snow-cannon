@@ -5,26 +5,13 @@ on:
     paths:
       - 'snowflake/rbac/**'
   workflow_dispatch:
-    inputs:
-        manual_run:
-          description: Manual Run
-          default: 1
-          required: false
 
 
 jobs:
-  build-container:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Builds Docker image
-        run: docker build . -f .docker/Dockerfile -t snowflake_terraform_image_ght4353
-
   deploy-snowflake-rbac:
-    needs: build-container
     runs-on: ubuntu-latest
+    container: glasgowcannoners/new-tf-snow:latest
     environment: dev
-    container: snowflake_terraform_image_ght4353
     env:
       ENV: dev
       SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
