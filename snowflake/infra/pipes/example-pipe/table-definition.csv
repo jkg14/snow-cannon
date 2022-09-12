@@ -1,0 +1,4 @@
+field,type
+customer_id,INTEGER
+customer_name,VARCHAR
+spend,FLOAT
