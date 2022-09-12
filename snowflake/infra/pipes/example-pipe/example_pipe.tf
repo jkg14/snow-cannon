@@ -4,4 +4,7 @@ module "example_pipe" {
   s3_path        = "transactions"
   database       = "ANALYTICS"
   schema         = "PUBLIC"
+  file_format    = "CSV"
+  field_delimiter  = ","
+  record_delimiter = "\n"
 }
