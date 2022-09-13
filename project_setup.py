@@ -2,10 +2,7 @@ import glob
 import re
 
 
-def replace_project_name(
-    current_project_name="snow-cannon", dirs_to_glob=["./**/*.tf", "./**/*.sh"]
-):
-
+def replace_project_name(current_project_name, dirs_to_glob=["./**/*.tf", "./**/*.sh"]):
     if not isinstance(dirs_to_glob, list):
         dirs = [dirs_to_glob]
     else:
