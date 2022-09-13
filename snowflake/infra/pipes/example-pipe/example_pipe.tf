@@ -7,4 +7,5 @@ module "example_pipe" {
   file_format    = "CSV"
   field_delimiter  = ","
   record_delimiter = "\n"
+  skip_header    = 1
 }
