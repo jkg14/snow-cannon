@@ -23,7 +23,7 @@ resource "snowflake_pipe" "create_pipe" {
   auto_ingest    = "true"
   database       = var.database
   schema         = var.schema
-  copy_statement = "COPY INTO ${var.database}.${var.schema}.${local.formatted_s3_path} from ( SELECT ${local.copy_command}, TO_TIMESTAMP_NTZ(current_timestamp) FROM @${var.database}.${var.schema}.${var.external_stage_name}) file_format = (type = '${var.file_format}' ${local.delimiter} ${local.skip_header} ${local.date_format}  ${local.validate_utf8})"
+  copy_statement = "COPY INTO ${var.database}.${var.schema}.${local.formatted_s3_path} from ( SELECT ${local.copy_command}, '${local.record_source}', TO_TIMESTAMP_NTZ(current_timestamp) FROM @${var.database}.${var.schema}.${var.external_stage_name}) file_format = (type = '${var.file_format}' ${local.delimiter} ${local.skip_header} ${local.date_format}  ${local.validate_utf8})"
   comment        = "Pipe to ingest ${var.s3_path} data from ${var.s3_bucket_name} into ${var.database}.${var.schema}.${local.formatted_s3_path}"
 }
 

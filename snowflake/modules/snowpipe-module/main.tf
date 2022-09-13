@@ -24,4 +24,5 @@ module "create_snowpipe" {
   skip_header         = var.skip_header
   date_format         = var.date_format
   validate_utf8       = var.validate_utf8
+  record_source       = var.record_source
 }

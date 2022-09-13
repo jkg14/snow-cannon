@@ -8,4 +8,5 @@ module "example_pipe" {
   field_delimiter  = ","
   record_delimiter = "\n"
   skip_header    = 1
+  record_source  = "SNOWPIPE_S3"
 }

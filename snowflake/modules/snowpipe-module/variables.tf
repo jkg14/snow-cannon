@@ -70,3 +70,8 @@ variable "validate_utf8" {
   default     = true
   description = "validates utf8 encoding of file"
 }
+
+variable "record_source" {
+  type        = string
+  description = "The source of the data"
+}

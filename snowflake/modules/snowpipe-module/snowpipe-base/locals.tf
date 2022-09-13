@@ -3,7 +3,8 @@ locals {
 
   csv_table_def  = var.file_format == "CSV" ? csvdecode(file("table-definition.csv")) : []
   table_def      = var.file_format == "CSV" ? formatlist("%s %s", local.csv_table_def[*].field, local.csv_table_def[*].type) : []
-  table_rows     = var.file_format == "CSV" ? "(${join(", ", local.table_def)}, LOAD_TIMESTAMP timestamp)" : "(RAW_DATA variant, LOAD_TIMESTAMP timestamp)"
+  record_source  = upper(var.record_source)
+  table_rows     = var.file_format == "CSV" ? "(${join(", ", local.table_def)}, RECORD SOURCE varchar, LOAD_TIMESTAMP timestamp)" : "(RAW_DATA variant, RECORD SOURCE varchar, LOAD_TIMESTAMP timestamp)"
   formatted_rows = upper(local.table_rows)
   copy_command   = var.file_format == "CSV" ? join(", ", formatlist("$%s", range(1, length(local.table_def) + 1))) : "$1"
 
