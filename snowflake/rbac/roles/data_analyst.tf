@@ -4,6 +4,7 @@ resource "snowflake_role" "DATA_ANALYST" {
 }
 
 resource "snowflake_role_grants" "grants_on_role_DATA_ANALYST" {
+  depends_on = [snowflake_role.DATA_ANALYST]
   role_name = snowflake_role.DATA_ANALYST.name
 
   users = [
