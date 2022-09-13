@@ -1,0 +1,98 @@
+name: 'deploy all resources'
+
+on: workflow_dispatch
+
+
+jobs:
+  deploy-snowflake-rbac:
+    runs-on: ubuntu-latest
+    container: glasgowcannoners/new-tf-snow:latest
+    environment: dev
+    env:
+      ENV: dev
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_REGION: ${{ secrets.SNOWFLAKE_REGION }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWSQL_PWD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_ROLENAME: SYSADMIN
+
+    steps:
+    - name: checkout-code
+      uses: actions/checkout@v2
+
+    - name: configure-AWS-credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-duration-seconds: 900
+        role-session-name: CI-deployment
+
+    - name: deploy-users
+      run: |
+        cd snowflake/rbac/users
+        terraform init
+        terraform workspace new $ENV || terraform workspace select $ENV
+        terraform plan
+        terraform apply -input=false -auto-approve
+
+    - name: deploy-roles
+      run: |
+        cd snowflake/rbac/roles
+        terraform init
+        terraform workspace new $ENV || terraform workspace select $ENV
+        terraform plan
+        terraform apply -input=false -auto-approve
+
+    - name: deploy-warehouses
+      run: |
+        cd snowflake/infra/warehouses
+        terraform init
+        terraform workspace new $ENV || terraform workspace select $ENV
+        terraform plan
+        terraform apply -input=false -auto-approve
+
+    - name: deploy-databases
+      run: |
+        cd snowflake/infra/databases
+        terraform init
+        terraform workspace new $ENV || terraform workspace select $ENV
+        terraform plan
+        terraform apply -input=false -auto-approve
+
+    - name: deploy-schemas-for-db-analytics
+      run: |
+        cd snowflake/infra/schemas/analytics
+        terraform init
+        terraform workspace new $ENV || terraform workspace select $ENV
+        terraform plan
+        terraform apply -input=false -auto-approve
+    
+    
+    # ADD BELOW WHEN WE NEED TO TEST TASKS. INTEGRATIONS AND STAGES ALREADY INCLUDED IN EXAMPLE PIPE BELOW.
+    # - name: deploy-integrations
+    #   run: |
+    #     cd snowflake/infra/storage_integrations
+    #     terraform init
+    #     terraform workspace new $ENV || terraform workspace select $ENV
+    #     terraform plan
+    #     terraform apply -input=false -auto-approve
+
+    # - name: deploy-stages
+    #   run: |
+    #     cd snowflake/infra/stages
+    #     terraform init
+    #     terraform workspace new $ENV || terraform workspace select $ENV
+    #     terraform plan
+    #     terraform apply -input=false -auto-approve
+
+    - name: deploy-pipes
+      run: |
+        cd snowflake/infra/pipes/example-pipe
+        terraform init
+        terraform workspace new $ENV || terraform workspace select $ENV
+        terraform plan
+        terraform apply -input=false -auto-approve
