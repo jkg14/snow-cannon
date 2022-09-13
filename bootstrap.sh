@@ -26,7 +26,7 @@ terraform apply -input=false -auto-approve
 terraform output -json
 
 echo "Generating acccess key for cicd"
-# aws iam create-access-key --user-name glasgow-cannon-2-ci-user-$ENV
+# aws iam create-access-key --user-name glasgow-cannon-3-ci-user-$ENV
 terraform state pull | jq '.resources[] | select(.type == "aws_iam_access_key") | .instances[0].attributes'
 echo "Copy the keys to github secrets"
 

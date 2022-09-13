@@ -1,7 +1,7 @@
 data "terraform_remote_state" "transactions_export" {
   backend = "s3"
   config = {
-    bucket = "glasgow-cannon-2-remote-state"
+    bucket = "glasgow-cannon-3-remote-state"
     key    = "env:/${terraform.workspace}/snowflake/infra/stages/terraform.tfstate"
     region = module.config.entries.providers.aws_region
   }
