@@ -5,7 +5,7 @@ locals {
       group_name = "nonprod"
 
       aws_account = {
-        id      = "190497598504"
+        id      = "197915863913"
         region  = "us-east-1"
         profile = "aws-dev"
       }

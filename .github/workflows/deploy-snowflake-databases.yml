@@ -8,7 +8,7 @@ on:
 jobs:
   deploy-snowflake-databases:
     runs-on: ubuntu-latest
-    container: glasgowcannoners/new-tf-snow:latest
+    container: infinityworks/awscli-terraform-snowflake:1.0.1
     environment: dev
     env:
       ENV: dev
